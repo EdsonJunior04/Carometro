@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\SENAI\\Senai 2022\\Carometro Normal Back\\Carometro-G5\\BackEnd\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj": {}
+    "C:\\Users\\46813334840.INFOSCS\\Documents\\Carometro\\Carometro\\Back-End\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj": {}
   },
   "projects": {
-    "E:\\SENAI\\Senai 2022\\Carometro Normal Back\\Carometro-G5\\BackEnd\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj": {
+    "C:\\Users\\46813334840.INFOSCS\\Documents\\Carometro\\Carometro\\Back-End\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\SENAI\\Senai 2022\\Carometro Normal Back\\Carometro-G5\\BackEnd\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj",
+        "projectUniqueName": "C:\\Users\\46813334840.INFOSCS\\Documents\\Carometro\\Carometro\\Back-End\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj",
         "projectName": "FaceCheck.webAPI",
-        "projectPath": "E:\\SENAI\\Senai 2022\\Carometro Normal Back\\Carometro-G5\\BackEnd\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj",
-        "packagesPath": "C:\\Users\\ejr_0\\.nuget\\packages\\",
-        "outputPath": "E:\\SENAI\\Senai 2022\\Carometro Normal Back\\Carometro-G5\\BackEnd\\FaceCheck.webAPI\\FaceCheck.webAPI\\obj\\",
+        "projectPath": "C:\\Users\\46813334840.INFOSCS\\Documents\\Carometro\\Carometro\\Back-End\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj",
+        "packagesPath": "C:\\Users\\46813334840.INFOSCS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\46813334840.INFOSCS\\Documents\\Carometro\\Carometro\\Back-End\\FaceCheck.webAPI\\FaceCheck.webAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ejr_0\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\46813334840.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -85,6 +85,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[5.0.14, 5.0.14]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -93,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

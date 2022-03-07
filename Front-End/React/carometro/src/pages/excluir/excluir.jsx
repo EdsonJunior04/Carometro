@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import foto_perfil from '../../assets/img/foto_perfil.png'
+// import foto_perfil from '../../assets/img/foto_perfil.png'
 import '../../assets/css/adm.css'
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
@@ -13,7 +13,7 @@ export default function Cadastrar() {
     const [isLoading,] = useState(false);
     const [idAlunos, setIdAlunos] = useState(0)
     const [listaAlunos, setListaAlunos] = useState([])
-    const [fotoAtiva, setFotoAtiva] = useState('')
+    const [imgPerfil, setImgPerfil] = useState('')
 
 
     function BuscarAlunos() {
@@ -35,21 +35,6 @@ export default function Cadastrar() {
 
     useEffect(BuscarAlunos, []);
 
-    function buscarImagem(event) {
-        api('/Alunos/aluno/' + event.idAlunos, )
-
-            .then(resposta => {
-                if (resposta.status === 200) {
-                    console.log('Imagem')
-                    console.log(resposta)
-                    setIdAlunos(resposta.data.imagem)
-                    // setFotoAtiva(resposta.data.imagem)
-                }
-            })
-            .catch(erro => console.log(erro))
-    }
-
-    useEffect(buscarImagem, []);
 
 
 
@@ -65,8 +50,17 @@ export default function Cadastrar() {
             .catch(erro => console.log(erro))
     }
 
-    function buscarImagem(){
+    const MostrarImg = (idAluno) => {
         
+        api.get('/Alunos/aluno/'+idAluno)
+        .then(resp => {
+            if (resp.status === 200) {
+                // setIdAlunos(resp.data)
+                setImgPerfil(resp.data.imagem)
+            }
+        }).catch(erro => {
+            console.log(erro)
+        })
     }
 
     return (
@@ -81,7 +75,7 @@ export default function Cadastrar() {
                         <div className="posicao_foto">
                             <img
                                 className="foto_perfil"
-                                src={foto_perfil}
+                                src={imgPerfil}
                                 alt="Adicione a sua foto"
                             />
                         </div>
@@ -95,7 +89,8 @@ export default function Cadastrar() {
                                 id="alunos"
                                 value={idAlunos}
                                 onChange={(campo) => setIdAlunos(campo.target.value)}
-                            >
+                                onChangeCapture={(img) => MostrarImg(img.target.value)}
+                            >   
                                 <option value="0">Selecione o Aluno</option>
 
                                 {

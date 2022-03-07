@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ea0c7d30-ed68-401a-ad6c-aae222f78c57": {
+      "ProjectGuid": "ea0c7d30-ed68-401a-ad6c-aae222f78c57",
+      "DisplayName": "FaceCheck.webAPI",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

@@ -12,10 +12,8 @@ import { WebcamCapture } from "../../components/webcam/Webcam";
 
 export default function Cadastrar() {
     const [isLoading, setIsLoading] = useState(false);
-    const [nomeAluno, setNomeAluno] = useState('');
-    const [dataNascimento, setDataNascimento] = useState(new Date())
+    const [imgPerfil, setImgPerfil] = useState('')
     const [idSala, setIdSala] = useState(0)
-    const [idTurma, setIdTurma] = useState(0)
     // const [idPeriodo, setIdPeriodo] = useState(0)
     // const [idAluno, setIdAluno] = useState(0)
     const [idRa, setIdRa] = useState(0)
@@ -40,6 +38,18 @@ export default function Cadastrar() {
                 }
             })
             .catch(erro => console.log(erro))
+    }
+
+    const MostrarImg = (idAluno) => {
+        api.get('/Alunos/aluno/'+idAluno)
+        .then(resp => {
+            if (resp.status === 200) {
+                setImgPerfil(resp.data.imagem)
+                // setIdAlunos(resp.data)
+            }
+        }).catch(erro => {
+            console.log(erro)
+        })
     }
 
     useEffect(BuscarAlunos, []);
@@ -85,10 +95,10 @@ export default function Cadastrar() {
                         <div className="posicao_foto">
                             <img
                                 className="foto_perfil"
-                                src={foto_perfil}
+                                src={imgPerfil}
                                 alt="Adicione a sua foto"
                             />  
-                            {/* <WebcamCapture /> */}
+                            <WebcamCapture />
                         </div>
                         <div className="input_container">
 
@@ -98,6 +108,7 @@ export default function Cadastrar() {
                                 id="alunos"
                                 value={idAlunos}
                                 onChange={(campo) => setIdAlunos(campo.target.value)}
+                                onChangeCapture={(img) => MostrarImg(img.target.value)}
                             >
                                 <option value="0">Selecione o Aluno</option>
 
@@ -109,33 +120,7 @@ export default function Cadastrar() {
                                             </option>
                                         )
                                     })}
-                            </select>
-
-                            {/* <input
-                                className="input"
-                                type="name"
-                                name="nome"
-                                placeholder="Nome do Aluno"
-                                value={nomeAluno}
-                                onChange={(campo) => setNomeAluno(campo.target.value)}
-                            /> */}
-                            {/* <input
-                                className="input"
-                                type="text"
-                                name="ra"
-                                placeholder="RA do Aluno"
-                                value={idRa}
-                                onChange={(campo) => setIdRa(campo.target.value)}
-                            /> */}
-
-                            {/* <input
-                                className="input"
-                                type="file"
-                                name="arquivo"
-                                placeholder="Foto do Aluno"
-                            // value={}
-                            // onChange={}                
-                            /> */}
+                            </select>                            
 
                             <select
                                 className="input"

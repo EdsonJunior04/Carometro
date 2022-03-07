@@ -1,6 +1,7 @@
 ﻿using FaceCheck.webAPI.Domains;
 using FaceCheck.webAPI.Interfaces;
 using FaceCheck.webAPI.Repositories;
+using FaceCheck.webAPI.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -97,16 +98,16 @@ namespace FaceCheck.webAPI.Controllers
         {
             try
             {
-             _alunoRepository.Atualizar(idAluno, AlunoAtualizada);
+                _alunoRepository.Atualizar(idAluno, AlunoAtualizada);
 
-            return StatusCode(204);
+                return StatusCode(204);
             }
             catch (Exception)
             {
 
                 throw;
             }
-          
+
         }
 
 
@@ -126,8 +127,8 @@ namespace FaceCheck.webAPI.Controllers
             }
 
         }
-        [HttpPost("imagem")]
-        public IActionResult PostarDir(IFormFile arquivo)
+        [HttpPost("imagem/{idAluno}")]
+        public IActionResult PostarDir(IFormFile arquivo, int idAluno)
         {
             try
             {
