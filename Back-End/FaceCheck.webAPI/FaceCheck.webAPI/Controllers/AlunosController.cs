@@ -34,15 +34,15 @@ namespace FaceCheck.webAPI.Controllers
         public IActionResult BuscarPorId(int idAluno)
         {
             try
-            {       
+            {
                 return Ok(_alunoRepository.BuscarPorId(idAluno));
             }
-            catch (Exception erro) 
+            catch (Exception erro)
             {
                 return BadRequest(erro);
-           
+
             }
-            
+
         }
 
 
@@ -51,14 +51,14 @@ namespace FaceCheck.webAPI.Controllers
         {
             try
             {
-            return Ok(_alunoRepository.BuscarPorNome(nome));
+                return Ok(_alunoRepository.BuscarPorNome(nome));
             }
             catch (Exception erro)
             {
                 return BadRequest(erro);
 
             }
-           
+
         }
 
         [HttpGet("sala/{idSala}")]
@@ -66,14 +66,14 @@ namespace FaceCheck.webAPI.Controllers
         {
             try
             {
-             return Ok(_alunoRepository.BuscarPorSala(idSala));
+                return Ok(_alunoRepository.BuscarPorSala(idSala));
             }
             catch (Exception erro)
             {
                 return BadRequest(erro);
 
             }
-           
+
         }
 
         [HttpPost]
@@ -81,32 +81,44 @@ namespace FaceCheck.webAPI.Controllers
         {
             try
             {
-            _alunoRepository.Cadastrar(novoAluno);
+                _alunoRepository.Cadastrar(novoAluno);
 
-            return StatusCode(201);
+                return StatusCode(201);
             }
             catch (Exception erro)
             {
                 return BadRequest(erro);
 
             }
-            
+
         }
 
         [HttpPut("{idAluno}")]
-        public IActionResult Atualizar(short idAluno, Aluno AlunoAtualizada)
+        public IActionResult Atualizar(short idAluno, Aluno AlunoAtualizada, IFormFile arquivo  )
         {
-            try
-            {
-                _alunoRepository.Atualizar(idAluno, AlunoAtualizada);
+            Aluno aluno = new Aluno();
 
-                return StatusCode(204);
-            }
-            catch (Exception)
-            {
+            #region Upload da Imagem com extensões permitidas apenas
+            string[] extensoesPermitidas = { "jpg", "png", "jpeg", "gif" };
+            string uploadResultado = Upload.UploadFile(arquivo, extensoesPermitidas);
 
-                throw;
+            if (uploadResultado == "")
+            {
+                return BadRequest("Arquivo não encontrado");
             }
+
+            if (uploadResultado == "Extensão não permitida")
+            {
+                return BadRequest("Extensão de arquivo não permitida");
+            }
+
+            aluno.Imagem= uploadResultado;
+            #endregion            
+
+            _alunoRepository.Atualizar(idAluno,AlunoAtualizada);
+
+
+            return NoContent();
 
         }
 
@@ -116,9 +128,9 @@ namespace FaceCheck.webAPI.Controllers
         {
             try
             {
-            _alunoRepository.Deletar(idAluno);
+                _alunoRepository.Deletar(idAluno);
 
-            return StatusCode(204);
+                return StatusCode(204);
             }
             catch (Exception erro)
             {
@@ -170,7 +182,7 @@ namespace FaceCheck.webAPI.Controllers
         public IActionResult getDIR()
         {
             try
-            {               
+            {
 
                 int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
 
