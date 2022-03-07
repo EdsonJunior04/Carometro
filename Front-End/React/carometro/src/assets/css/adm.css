@@ -1,0 +1,93 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.foto_perfil {
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+}
+
+.posicao_foto {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.input {
+    height: 6vh;
+    /* margin-top: 2vw; */
+    width: 20vw;
+    border-radius: 20vw;
+    font-size: 1vw;
+    color: #3D8DF2;
+    background-color: transparent;
+    border: none;
+    border-bottom: #3D8DF2 2px solid;
+    padding: 15px;
+    font-size: 16px;
+    position: absolut;
+    margin-top: 3vw;
+    outline: 0;
+}
+
+.input::placeholder{
+    color: #3D8DF2;
+}
+
+.input_container {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    margin-right: 150px;
+}
+
+.container_adm {
+    background-color: #2E2E2E;
+    height: 850px;
+}
+
+.btn_cadastro {
+    height: 6vh;
+    margin-top: 4vw;
+    width: 20vw;
+    border-radius: 20vw;
+    font-size: 1.5vw;
+    color: white;
+    background-color: #3D8DF2;
+    border: none;
+}
+
+.btn_excluir {
+    height: 6vh;
+    margin-top: 4vw;
+    width: 20vw;
+    border-radius: 20vw;
+    font-size: 1.5vw;
+    color: white;
+    background-color: red;
+    border: none;
+}
+
+.display{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 500px;
+
+}
+
+.error{
+    color: red;
+    font-size: 24px;
+    margin-right: 30px;
+}
+
+.green{
+    color: green;
+    font-size: 24px;
+    margin-right: 30px;
+}
+

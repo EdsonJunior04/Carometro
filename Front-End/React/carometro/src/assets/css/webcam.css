@@ -1,0 +1,32 @@
+.webcam-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  /* margin: 0 auto; */
+  margin-top: 10px;
+}
+
+.webcam-container .webcam-btn {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 38%;
+}
+
+
+.input_file{
+  height: 6vh;
+  margin-top: 3vw;
+  width: 15vw;
+  border-radius: 20vw;
+  font-size: 1.5vw;
+  color: white;
+  background-color: #3D8DF2;
+  border: none;
+  cursor: pointer;
+  margin-left: 0.5vw;
+}
+input[type="file"] {
+
+  display: none;
+}
