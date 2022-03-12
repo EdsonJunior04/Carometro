@@ -25,7 +25,7 @@ namespace FaceCheck.webAPI.Repositories
 
                 ctx.Alunos.Update(alunoBuscado);
 
-                ctx.SaveChanges();
+                ctx.SaveChangesAsync();
             }
         }
 
@@ -50,7 +50,7 @@ namespace FaceCheck.webAPI.Repositories
 
         public void Cadastrar(Aluno novoAluno)
         {
-            novoAluno.Imagem = "https://cdn-icons-png.flaticon.com/512/64/64572.png";
+            //novoAluno.Imagem = "https://cdn-icons-png.flaticon.com/512/64/64572.png";
 
 
             ctx.Alunos.Add(novoAluno);

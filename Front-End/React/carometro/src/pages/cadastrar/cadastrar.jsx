@@ -6,9 +6,15 @@ import '../../assets/css/adm.css'
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
 import api from "../../services/api"
+import Webcam from 'react-webcam'
 import { Sidebar } from "../../components/sidebar/SideBar";
 // import { WebcamCapture } from "../../components/webcam/Webcam";
 
+const videoConstraints = {
+    width: 320,
+    height: 300,
+    facingMode: "user"
+};
 
 
 export default function Cadastrar() {
@@ -23,6 +29,7 @@ export default function Cadastrar() {
     const listaTurma = [1, 2]
     const [cadastrado, setCadastrado] = useState('')
     const [erroMensagem, setErroMensagem] = useState('');
+    const [imagem, setImagem] = useState('')
 
 
     function BuscarPeriodo() {
@@ -44,8 +51,18 @@ export default function Cadastrar() {
         idSala: idSala,
         nomeAluno: nomeAluno,
         dataNascimento: dataNascimento,
-        ra: ra
+        ra: ra,
+        imagem: imagem
     }
+
+    const webcamRef = React.useRef(null);
+
+    const capture = React.useCallback(
+        () => {
+            const imageSrc = webcamRef.current.getScreenshot();
+            setImagem(imageSrc)
+        }
+    );
 
 
     function CadastrarAluno(event) {
@@ -85,11 +102,41 @@ export default function Cadastrar() {
                     <form className="display" onSubmit={CadastrarAluno} >
 
                         <div className="posicao_foto">
-                            <img
+                            {/* <img
                                 className="foto_perfil"
                                 src={foto_perfil}
                                 alt="Adicione a sua foto"
-                            />
+                            /> */}
+                            <div className='webcam-container'>
+                                <div  >
+                                    {imagem === '' ? <Webcam
+                                        audio={false}
+                                        height={300}
+                                        ref={webcamRef}
+                                        screenshotFormat="image/jpeg"
+                                        width={320}
+                                        frameBorder={50}
+                                        videoConstraints={videoConstraints}
+                                    // value={arquivo}
+
+                                    /> : <img src={imagem} alt="Imagem Capturada" />}
+                                </div>
+                                <div>
+                                    {imagem !== '' ?
+                                        <button onClick={(e) => {
+                                            e.preventDefault();
+                                            setImagem('')
+                                        }}
+                                            className="input_file btn ">
+                                            Tirar Outra Foto</button> :
+                                        <button onClick={(e) => {
+                                            e.preventDefault();
+                                            capture();
+                                        }}
+                                            className="input_file btn ">Tirar Foto</button>
+                                    }
+                                </div>
+                            </div>
 
                             {/* <WebcamCapture /> */}
 

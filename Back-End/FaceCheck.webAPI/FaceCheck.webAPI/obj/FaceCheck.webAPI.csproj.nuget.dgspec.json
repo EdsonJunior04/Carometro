@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\46813334840.INFOSCS\\Documents\\Carometro\\Carometro\\Back-End\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj": {}
+    "E:\\SENAI\\Estudos\\Carometro\\Carometro\\Back-End\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\46813334840.INFOSCS\\Documents\\Carometro\\Carometro\\Back-End\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj": {
+    "E:\\SENAI\\Estudos\\Carometro\\Carometro\\Back-End\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\46813334840.INFOSCS\\Documents\\Carometro\\Carometro\\Back-End\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj",
+        "projectUniqueName": "E:\\SENAI\\Estudos\\Carometro\\Carometro\\Back-End\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj",
         "projectName": "FaceCheck.webAPI",
-        "projectPath": "C:\\Users\\46813334840.INFOSCS\\Documents\\Carometro\\Carometro\\Back-End\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj",
-        "packagesPath": "C:\\Users\\46813334840.INFOSCS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\46813334840.INFOSCS\\Documents\\Carometro\\Carometro\\Back-End\\FaceCheck.webAPI\\FaceCheck.webAPI\\obj\\",
+        "projectPath": "E:\\SENAI\\Estudos\\Carometro\\Carometro\\Back-End\\FaceCheck.webAPI\\FaceCheck.webAPI\\FaceCheck.webAPI.csproj",
+        "packagesPath": "C:\\Users\\ejr_0\\.nuget\\packages\\",
+        "outputPath": "E:\\SENAI\\Estudos\\Carometro\\Carometro\\Back-End\\FaceCheck.webAPI\\FaceCheck.webAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\46813334840.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ejr_0\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +40,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Azure.Storage.Blobs": {
+              "target": "Package",
+              "version": "[12.11.0, )"
+            },
             "BCrypt.Net-Next": {
               "target": "Package",
               "version": "[4.0.2, )"
@@ -85,12 +89,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.14, 5.0.14]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -99,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -94,26 +94,8 @@ namespace FaceCheck.webAPI.Controllers
         }
 
         [HttpPut("{idAluno}")]
-        public IActionResult Atualizar(short idAluno, Aluno AlunoAtualizada, IFormFile arquivo  )
-        {
-            Aluno aluno = new Aluno();
-
-            #region Upload da Imagem com extensões permitidas apenas
-            string[] extensoesPermitidas = { "jpg", "png", "jpeg", "gif" };
-            string uploadResultado = Upload.UploadFile(arquivo, extensoesPermitidas);
-
-            if (uploadResultado == "")
-            {
-                return BadRequest("Arquivo não encontrado");
-            }
-
-            if (uploadResultado == "Extensão não permitida")
-            {
-                return BadRequest("Extensão de arquivo não permitida");
-            }
-
-            aluno.Imagem= uploadResultado;
-            #endregion            
+        public IActionResult Atualizar(short idAluno, Aluno AlunoAtualizada  )
+        {                    
 
             _alunoRepository.Atualizar(idAluno,AlunoAtualizada);
 

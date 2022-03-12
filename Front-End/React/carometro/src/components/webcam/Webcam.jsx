@@ -12,21 +12,22 @@ const videoConstraints = {
 };
 
 export const WebcamCapture = () => {
-    const [image, setImage] = useState('');
+    const [imagem, setImagem] = useState('');
 
     const webcamRef = React.useRef(null);
 
     const capture = React.useCallback(
         () => {
             const imageSrc = webcamRef.current.getScreenshot();
-            setImage(imageSrc)
+            setImagem(imageSrc)
         }
     );
+    
 
     return(
         <div className='webcam-container'>
             <div  >
-                {image === '' ? <Webcam
+                {imagem === '' ? <Webcam
                     audio={false}
                     height={300}
                     ref={webcamRef}
@@ -34,14 +35,15 @@ export const WebcamCapture = () => {
                     width={320}
                     frameBorder={50}
                     videoConstraints={videoConstraints}
+                    // value={image}
 
-                /> : <img src={image} alt="Imagem Capturada"/>}
+                /> : <img src={imagem} alt="Imagem Capturada"/>}
             </div>
             <div>
-            {image !== '' ?
+            {imagem !== '' ?
                     <button onClick={(e) => {
                         e.preventDefault();
-                        setImage('')
+                        setImagem('')
                     }}
                         className="input_file btn ">
                         Tirar Outra Foto</button> :

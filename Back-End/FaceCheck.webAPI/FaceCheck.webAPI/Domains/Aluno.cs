@@ -14,6 +14,8 @@ namespace FaceCheck.webAPI.Domains
         public string NomeAluno { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Ra { get; set; }
+
+        [Required]
         public string Imagem { get; set; }
 
         public virtual Sala IdSalaNavigation { get; set; }

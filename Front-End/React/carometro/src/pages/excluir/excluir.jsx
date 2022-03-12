@@ -14,7 +14,8 @@ export default function Cadastrar() {
     const [idAlunos, setIdAlunos] = useState(0)
     const [listaAlunos, setListaAlunos] = useState([])
     const [imgPerfil, setImgPerfil] = useState('')
-
+    const [excluido, setExcluido] = useState('')
+    const [erroMensagem, setErroMensagem] = useState('');
 
     function BuscarAlunos() {
         api('/Alunos', {
@@ -30,7 +31,7 @@ export default function Cadastrar() {
                     setListaAlunos(resposta.data)
                 }
             })
-            .catch(erro => console.log(erro))
+            .catch(erro => console.log(erro) )
     }
 
     useEffect(BuscarAlunos, []);
@@ -39,15 +40,23 @@ export default function Cadastrar() {
 
 
     function Excluir(aluno) {
-        // aluno.preventDefault();
+        setInterval(() => {
+            
+        })
+        aluno.preventDefault();
         api.delete('/Alunos/' + idAlunos)
 
             .then(resposta => {
                 if (resposta.status === 204) {
                     console.log('Aluno Excluido')
+                    setExcluido("Aluno Excluido")
+
                 }
             })
-            .catch(erro => console.log(erro))
+            .catch(erro => {
+                console.log(erro) 
+                setErroMensagem("Aluno não Excluido")
+            })
     }
 
     const MostrarImg = (idAluno) => {
@@ -102,6 +111,10 @@ export default function Cadastrar() {
                                         )
                                     })}
                             </select>
+
+                            <span className='error'>{erroMensagem === '' ? '' : 'Aluno não excluido!'}</span>
+
+                            <span className='green'>{excluido === '' ? '' : 'Aluno Excluido!'}</span>
 
                             {
                                 isLoading === false &&

@@ -38,6 +38,7 @@ CREATE TABLE ALUNOS(
 	nomeAluno VARCHAR(200) NOT NULL,
 	dataNascimento DATE NOT NULL,
 	RA CHAR(7) UNIQUE NOT NULL,
-	imagem VARCHAR(255)
+	imagem VARCHAR(MAX)
 );
 GO
+

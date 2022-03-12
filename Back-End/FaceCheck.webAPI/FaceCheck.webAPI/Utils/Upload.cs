@@ -21,7 +21,7 @@ namespace FaceCheck.webAPI.Utils
                     var pasta = Path.Combine("StaticFiles", "Images");
                     var caminho = Path.Combine(Directory.GetCurrentDirectory(), pasta);
 
-                    if (arquivo.Length > 0)
+                if (arquivo.Length > 0)
                     {
                         var fileName = ContentDispositionHeaderValue.Parse(arquivo.ContentDisposition).FileName.Trim('"');
 

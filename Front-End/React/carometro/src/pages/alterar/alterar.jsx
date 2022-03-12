@@ -1,27 +1,33 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import foto_perfil from '../../assets/img/foto_perfil.png'
+// import foto_perfil from '../../assets/img/foto_perfil.png'
 import '../../assets/css/adm.css'
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
 import api from "../../services/api"
-import { Sidebar } from "../../components/sidebar/SideBar";
-import { WebcamCapture } from "../../components/webcam/Webcam";
 
+import '../../assets/css/webcam.css'
+import { Sidebar } from "../../components/sidebar/SideBar";
+// import { WebcamCapture } from "../../components/webcam/Webcam";
+import Webcam from 'react-webcam'
+
+const videoConstraints = {
+    width: 320,
+    height: 300,
+    facingMode: "user"
+};
 
 
 export default function Cadastrar() {
     const [isLoading, setIsLoading] = useState(false);
     const [imgPerfil, setImgPerfil] = useState('')
     const [idSala, setIdSala] = useState(0)
-    // const [idPeriodo, setIdPeriodo] = useState(0)
-    // const [idAluno, setIdAluno] = useState(0)
     const [idRa, setIdRa] = useState(0)
-    // const listaPeriodo = [1, 2]
     const listaTurma = [1, 2]
     const [idAlunos, setIdAlunos] = useState(0)
     const [listaAlunos, setListaAlunos] = useState([])
-    const imagem = useState('')
+    const [imagem, setImagem] = useState('')
+    const [image, setImage] = useState('');
 
 
     function BuscarAlunos() {
@@ -40,33 +46,46 @@ export default function Cadastrar() {
             .catch(erro => console.log(erro))
     }
 
+    const webcamRef = React.useRef(null);
+
+    const capture = React.useCallback(
+        () => {
+            const imageSrc = webcamRef.current.getScreenshot();
+            setImagem(imageSrc)
+        }
+    );
+
     const MostrarImg = (idAluno) => {
-        api.get('/Alunos/aluno/'+idAluno)
-        .then(resp => {
-            if (resp.status === 200) {
-                setImgPerfil(resp.data.imagem)
-                // setIdAlunos(resp.data)
-            }
-        }).catch(erro => {
-            console.log(erro)
-        })
+        api.get('/Alunos/aluno/' + idAluno)
+            .then(resp => {
+                if (resp.status === 200) {
+                    setImgPerfil(resp.data.imagem)
+                    // setIdAlunos(resp.data)
+                }
+            }).catch(erro => {
+                console.log(erro)
+            })
     }
 
     useEffect(BuscarAlunos, []);
 
-    
+
 
 
     function AlterarAluno(event) {
         setIsLoading(true)
         event.preventDefault();
-
+        console.log('Imagem')
+        console.log(image)
         let alunos = {
             idSala: idSala,
             imagem: imagem
         }
 
-        api.put('/Alunos/' + idAlunos, alunos, {
+        api.put('/Alunos/' + idAlunos, {
+            idSala: idSala,
+            imagem: imagem
+        }, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -83,6 +102,8 @@ export default function Cadastrar() {
     }
 
 
+
+
     return (
         <div >
             <Header />
@@ -97,12 +118,44 @@ export default function Cadastrar() {
                                 className="foto_perfil"
                                 src={imgPerfil}
                                 alt="Adicione a sua foto"
-                            />  
-                            <WebcamCapture />
+                            />
+                            
+                            <div className='webcam-container'>
+                                <div  >
+                                    {imagem === '' ? <Webcam
+                                        audio={false}
+                                        height={300}
+                                        ref={webcamRef}
+                                        screenshotFormat="image/jpeg"
+                                        width={320}
+                                        frameBorder={50}
+                                        videoConstraints={videoConstraints}
+                                    // value={arquivo}
+
+                                    /> : <img src={imagem} alt="Imagem Capturada" />}
+                                </div>
+                                <div>
+                                    {imagem !== '' ?
+                                        <button onClick={(e) => {
+                                            e.preventDefault();
+                                            setImagem('')
+                                        }}
+                                            className="input_file btn ">
+                                            Tirar Outra Foto</button> :
+                                        <button onClick={(e) => {
+                                            e.preventDefault();
+                                            capture();
+                                        }}
+                                            className="input_file btn ">Tirar Foto</button>
+                                    }
+                                </div>
+                            </div>
                         </div>
                         <div className="input_container">
 
-                        <select
+
+
+                            <select
                                 className="input"
                                 name="alunos"
                                 id="alunos"
@@ -116,11 +169,12 @@ export default function Cadastrar() {
                                     listaAlunos.map((aluno) => {
                                         return (
                                             <option key={aluno.idAlunos} value={aluno.idAlunos}>
-                                                Nome: {aluno.nomeAluno} / RA:{aluno.ra} 
+                                                Nome: {aluno.nomeAluno} / RA:{aluno.ra}
                                             </option>
                                         )
                                     })}
-                            </select>                            
+                            </select>
+
 
                             <select
                                 className="input"
@@ -132,7 +186,7 @@ export default function Cadastrar() {
                                 <option value={listaTurma[0]}> 1A </option>
                                 <option value={listaTurma[1]}> 1B </option>
                             </select>
-                                    
+
                             {/* <input
                                 className="input"
                                 type="date"
